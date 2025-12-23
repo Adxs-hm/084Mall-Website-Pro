@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>084 ADMIN | 控制台</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/data.js"></script>
+</head>
+<body id="admin-app">
+
+    <!-- Dedicated hidden input for Quick Image Edit -->
+    <input type="file" id="quick-product-upload" accept="image/*" style="display:none;" onchange="handleQuickProductUpload(this)">
+
+    <!-- Minimal Sidebar -->
+    <nav class="admin-sidebar-v2">
+        <div class="admin-brand">
+            084 ADMIN
+        </div>
+        
+        <div class="menu-group">
+            <a href="#products" class="admin-nav-link active">
+                🏷️ <span class="nav-text">商品管理</span>
+            </a>
+            <a href="#settings" class="admin-nav-link">
+                ⚙️ <span class="nav-text">配置与资源</span>
+            </a>
+        </div>
+
+        <div class="menu-group" style="margin-top:auto; padding-bottom: 20px;">
+             <a href="index.html" class="admin-nav-link" style="color: #64748b;">
+                ↩ <span class="nav-text">返回商城</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="admin-content-v2">
+        
+        <!-- PRODUCTS -->
+        <section id="products" class="admin-section active">
+            <header class="section-header">
+                <h2>商品管理</h2>
+                <button class="btn-primary" onclick="openAddProduct()">+ 发布商品</button>
+            </header>
+
+            <div class="panel-box" style="padding: 20px; display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                <div style="display:flex; border:1px solid #cbd5e1; border-radius:6px; overflow:hidden;">
+                    <button class="view-btn active" id="btn-view-list" onclick="switchProductView('list')" style="padding:8px 14px; background:#f1f5f9; border:none; cursor:pointer; font-size:13px; font-weight:600; color:#334155;">列表</button>
+                    <button class="view-btn" id="btn-view-grid" onclick="switchProductView('grid')" style="padding:8px 14px; background:#fff; border:none; cursor:pointer; font-size:13px; color:#64748b; border-left:1px solid #cbd5e1;">图墙</button>
+                </div>
+                <input type="text" id="product-search" placeholder="搜索商品名称..." class="input-std" style="width: 250px;" onkeyup="renderAdminProducts()">
+            </div>
+
+            <!-- BATCH ACTION TOOLBAR -->
+            <div id="batch-toolbar" style="display:none; background:#eff6ff; border:1px solid #dbeafe; padding:10px 20px; margin-bottom:20px; border-radius:6px; align-items:center; gap:20px;">
+                <span style="font-size:13px; font-weight:700; color:#1d4ed8;">已选中 <span id="batch-count">0</span> 项</span>
+                <button class="btn-primary" onclick="batchUploadImage()" style="background:#2563eb; font-size:12px;">🖼️ 批量修改图片 (上传本地文件)</button>
+            </div>
+
+            <div id="product-view-list" class="panel-box" style="border: none; box-shadow: none; background: transparent;">
+                <div style="background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th width="40"><input type="checkbox" id="select-all-checkbox" onclick="toggleSelectAll(this)"></th>
+                                <th width="80">ID</th>
+                                <th>商品信息</th>
+                                <th width="120">售价</th>
+                                <th width="120">分类</th>
+                                <th width="100">库存</th>
+                                <th width="140">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-product-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="product-view-grid" class="visual-grid-container" style="display:none;"></div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="settings" class="admin-section">
+            <header class="section-header">
+                <h2>系统配置</h2>
+                <button class="btn-primary" onclick="saveSettings()">保存生效</button>
+            </header>
+
+            <div class="panel-box" style="padding:30px; max-width: 800px;">
+                <h3 style="font-size:14px; font-weight:700; margin-bottom:20px; border-bottom:1px solid #e2e8f0; padding-bottom:10px; color:#334155;">媒体资源</h3>
+                
+                <div class="form-group">
+                    <label style="display:block; font-size:12px; font-weight:600; color:#64748b; margin-bottom:8px;">全站背景音乐 (Audio)</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="set-bgm" class="input-std" placeholder="粘贴链接或从媒体库选择...">
+                        <button class="btn-secondary" onclick="openMediaLib('set-bgm', 'audio')">库选择</button>
+                        <button class="btn-secondary" style="border-color:#3b82f6; color:#1d4ed8; background:#eff6ff;" onclick="triggerDirectUpload('set-bgm')">📂 上传本地音乐</button>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                    <label style="display:block; font-size:12px; font-weight:600; color:#64748b; margin-bottom:8px;">品牌宣传视频 (Video)</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="set-video" class="input-std" placeholder="粘贴链接或从媒体库选择...">
+                        <button class="btn-secondary" onclick="openMediaLib('set-video', 'video')">库选择</button>
+                         <button class="btn-secondary" style="border-color:#3b82f6; color:#1d4ed8; background:#eff6ff;" onclick="triggerDirectUpload('set-video')">📂 上传本地视频</button>
+                    </div>
+                </div>
+
+                <h3 style="font-size:14px; font-weight:700; margin:40px 0 20px; border-bottom:1px solid #e2e8f0; padding-bottom:10px; color:#334155;">基础信息</h3>
+                <div class="form-group">
+                    <label style="display:block; font-size:12px; font-weight:600; color:#64748b; margin-bottom:8px;">顶部滚动公告</label>
+                    <input type="text" id="set-marquee" class="input-std">
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display:flex; gap:20px; justify-content:center;">
+                <button onclick="clearSystemCache()" class="btn-secondary" style="color: #ef4444; border-color: #fee2e2;">🗑️ 强制清除本地缓存 (Reload)</button>
+                <button onclick="exportSystemData()" class="btn-primary" style="font-size:16px; padding: 12px 30px; background: #0f172a;">⬇ 导出完整数据 (data.js)</button>
+            </div>
+             <p style="text-align:center; color:#94a3b8; font-size:12px; margin-top:10px;">提示：如果覆盖 data.js 后页面未更新，请点击左侧“清除缓存”按钮。</p>
+        </section>
+
+    </main>
+
+    <!-- Modals (Product / Media) -->
+    <div id="product-modal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <span>编辑商品</span>
+                <span class="close-btn" onclick="closeModal()">×</span>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit-id">
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label style="display:block; font-size:12px; font-weight:700; color:#64748b; margin-bottom:8px;">商品名称</label>
+                    <input type="text" id="edit-name" class="input-std" placeholder="输入商品名称">
+                </div>
+                <div style="display:flex; gap:20px; margin-bottom:20px;">
+                    <div style="flex:1;">
+                        <label style="font-size:12px; font-weight:700; color:#64748b; margin-bottom:6px; display:block;">价格 (¥)</label>
+                        <input type="number" id="edit-price" class="input-std">
+                    </div>
+                    <div style="flex:1;">
+                        <label style="font-size:12px; font-weight:700; color:#64748b; margin-bottom:6px; display:block;">分类</label>
+                        <select id="edit-cat" class="input-std">
+                            <option value="elec">智能数码</option>
+                            <option value="fashion">高级时装</option>
+                            <option value="home">家居美学</option>
+                        </select>
+                    </div>
+                    <div style="flex:1;">
+                        <label style="font-size:12px; font-weight:700; color:#64748b; margin-bottom:6px; display:block;">库存</label>
+                        <input type="number" id="edit-stock" class="input-std" value="99">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label style="display:block; font-size:12px; font-weight:700; color:#64748b; margin-bottom:8px;">主图设置</label>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <div style="width:50px; height:50px; background:#f4f4f4; border-radius:4px; overflow:hidden; flex-shrink:0; border:1px solid #e2e8f0;">
+                            <img id="edit-img-preview" src="" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <input type="text" id="edit-img-url" class="input-std" placeholder="图片链接..." oninput="document.getElementById('edit-img-preview').src=this.value">
+                        <button class="btn-secondary" onclick="openMediaLib('edit-img-url', 'product')">库选择</button>
+                        <button class="btn-secondary" style="border-color:#3b82f6; color:#1d4ed8; background:#eff6ff;" onclick="triggerDirectUpload('edit-img-url')">📂 上传</button>
+                    </div>
+                </div>
+
+                <div class="form-group" style="border-top:1px solid #e2e8f0; padding-top:20px; margin-top:20px;">
+                    <label style="display:block; font-size:12px; font-weight:700; color:#64748b; margin-bottom:8px;">更多展示图 (Gallery)</label>
+                    <div id="gallery-visual-area" class="visual-gallery-row" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; min-height:60px; padding:10px; display:flex; gap:8px;"></div>
+                </div>
+
+                <div style="text-align:right; margin-top:30px;">
+                    <button class="btn-primary" onclick="saveProduct()" style="width:100%;">保存并发布</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="media-lib-modal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <span>资源媒体库</span>
+                <span class="close-btn" onclick="closeModal()">×</span>
+            </div>
+            <div style="padding:0;">
+                <div style="display:flex; border-bottom:1px solid #e2e8f0;">
+                    <div class="lib-tab active" id="tab-all" onclick="switchLibTab('all')" style="padding:15px 20px; cursor:pointer; font-size:13px; font-weight:600; color:#0f172a; border-bottom:2px solid #0f172a;">全部</div>
+                    <div class="lib-tab" id="tab-product" onclick="switchLibTab('product')" style="padding:15px 20px; cursor:pointer; font-size:13px; color:#64748b;">图片</div>
+                    <div class="lib-tab" id="tab-media" onclick="switchLibTab('media')" style="padding:15px 20px; cursor:pointer; font-size:13px; color:#64748b;">视频/音频</div>
+                    <div class="lib-tab" id="tab-custom" onclick="switchLibTab('custom')" style="padding:15px 20px; cursor:pointer; font-size:13px; color:#64748b;">📤 上传本地资源</div>
+                </div>
+                
+                <div id="media-grid" style="padding:20px; display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; max-height:400px; overflow-y:auto;"></div>
+
+                <div id="upload-panel" style="padding:20px; display:none;">
+                    <div style="border: 2px dashed #cbd5e1; padding: 40px 20px; border-radius: 8px; margin-bottom: 20px; text-align:center; background: #f8fafc; cursor:pointer;" onclick="document.getElementById('local-file-upload').click()">
+                        <div style="font-size: 28px; margin-bottom: 10px; color:#cbd5e1;">+</div>
+                        <p style="color:#64748b; font-size:14px;">点击选择本地文件<br><span style="font-size:12px; color:#94a3b8;">支持图片/音频/视频，自动保存到浏览器</span></p>
+                        <input type="file" id="local-file-upload" accept="image/*,audio/*,video/*" style="display:none;" onchange="handleFileUpload(this)">
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="custom-url-input" class="input-std" placeholder="或粘贴外部链接 (https://...)">
+                        <button class="btn-secondary" onclick="useCustomUrl()">确认链接</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

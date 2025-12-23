@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>084 MALL | 购物车</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="cart">
+
+    <nav class="nav-platinum">
+        <div class="nav-content">
+            <a href="index.html" class="logo">084 MALL</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="list.html">系列作品 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="list.html?cat=elec">智能数码</a>
+                        <a href="list.html?cat=fashion">高级时装</a>
+                        <a href="list.html?cat=home">家居美学</a>
+                    </div>
+                </li>
+                <li><a href="about.html">品牌哲学</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="help.html">客户服务 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="help.html">帮助中心</a>
+                        <a href="contact.html">私人礼宾</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <a href="cart.html" class="active">购物车 (<span class="cart-count">0</span>)</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1 style="font-size:28px; font-weight:700; margin-bottom: 30px;">您的购物袋</h1>
+        
+        <div class="cart-layout">
+            <!-- 购物车列表区域 -->
+            <div id="cart-items-wrapper">
+                <!-- 由 JS 动态填充 -->
+            </div>
+
+            <!-- 结算摘要区域 (Sticky) -->
+            <aside class="cart-summary-box">
+                <h3 style="font-size:18px; font-weight:700; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid #f0f0f0;">订单摘要</h3>
+                
+                <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size:14px; color:#666;">
+                    <span>商品小计</span>
+                    <span style="font-weight:600;">¥<span id="cart-total">0</span></span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:25px; font-size:14px; color:#28a745;">
+                    <span>卡戎快运</span>
+                    <span>免运费</span>
+                </div>
+                
+                <div style="border-top:1px solid #f0f0f0; padding-top:20px; margin-bottom:30px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-weight:700; font-size:16px;">总计</span>
+                    <span style="font-size:24px; font-weight:800; color:#000;">¥<span id="cart-total-copy">0</span></span>
+                </div>
+
+                <form onsubmit="handleCheckout(event)">
+                    <input type="text" placeholder="收货人姓名" class="input-standard" style="margin-bottom:15px;" required>
+                    <button type="submit" class="btn-black" style="width:100%;">
+                        立即结算
+                    </button>
+                    <p style="text-align:center; margin-top:15px; font-size:11px; color:#ccc;">
+                        SSL ENCRYPTED CHECKOUT
+                    </p>
+                </form>
+            </aside>
+        </div>
+    </main>
+    
+    <!-- Success Modal -->
+    <div id="checkout-success-modal" class="modal">
+        <div class="success-modal-content">
+            <span class="success-icon">✓</span>
+            <h2 style="margin-bottom:10px;">支付成功</h2>
+            <p style="color:#666;">感谢您的订购。您的订单已确认。<br>页面即将跳转...</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; display:block; color:#000;">084 MALL</a>
+                    <p style="max-width: 300px; line-height: 1.8;">Defining the future of commerce through minimalist design and curated luxury.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>探索</h4>
+                    <a href="list.html?cat=elec">智能数码</a>
+                    <a href="list.html?cat=fashion">高级时装</a>
+                </div>
+                <div class="footer-col">
+                    <h4>服务</h4>
+                    <a href="help.html">帮助中心</a>
+                    <a href="contact.html">私人礼宾</a>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:60px; color:#ccc; font-size:10px; letter-spacing:2px;">
+                &copy; 2024 084 MALL. ALL RIGHTS RESERVED. <a href="admin.html" target="_blank" style="color:inherit; opacity:0.1; margin-left:10px; text-decoration:none;">Manage</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

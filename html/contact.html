@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>084 MALL | 私人礼宾</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="contact">
+
+    <nav class="nav-platinum">
+        <div class="nav-content">
+            <a href="index.html" class="logo">084 MALL</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="list.html">系列作品 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="list.html?cat=elec">智能数码</a>
+                        <a href="list.html?cat=fashion">高级时装</a>
+                        <a href="list.html?cat=home">家居美学</a>
+                    </div>
+                </li>
+                <li><a href="about.html">品牌哲学</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="help.html" class="active">客户服务 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="help.html">帮助中心</a>
+                        <a href="contact.html">私人礼宾</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <a href="cart.html">购物车 (<span class="cart-count">0</span>)</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header style="padding: 60px 0 40px; border-bottom: 1px solid #f0f0f0; margin-bottom: 60px;">
+            <h1 style="font-size: 32px; font-weight: 700; letter-spacing: -1px; color: #111;">私人礼宾预约</h1>
+            <p style="color: #666; margin-top: 10px; font-size: 14px;">Tailored Support & Personalized Services</p>
+        </header>
+
+        <div class="contact-grid">
+            <!-- Left Column: Info -->
+            <div class="contact-card">
+                <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 30px; border-bottom:1px solid #eee; padding-bottom:15px;">服务详情</h3>
+                <div style="display:flex; flex-direction:column; gap:25px;">
+                    <div style="display:flex; gap:15px;">
+                        <span style="font-size:20px;">📍</span>
+                        <div>
+                            <div style="font-size:11px; color:#999; font-weight:700; margin-bottom:4px;">总部</div>
+                            <div style="color:#000; font-weight:500;">零八四极简工业园 A1</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:15px;">
+                         <span style="font-size:20px;">📞</span>
+                        <div>
+                             <div style="font-size:11px; color:#999; font-weight:700; margin-bottom:4px;">热线</div>
+                            <div style="color:#000; font-weight:500;">400-084-8888</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:15px;">
+                         <span style="font-size:20px;">📧</span>
+                        <div>
+                             <div style="font-size:11px; color:#999; font-weight:700; margin-bottom:4px;">邮箱</div>
+                            <div style="color:#000; font-weight:500;">concierge@084mall.com</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 50px; padding: 20px; background: #f5f5f5; border-radius: 6px; font-size: 12px; color: #666; line-height: 1.6;">
+                    * 我们的礼宾人员将在 2 小时内回复您的预约申请。<br>
+                    * 周一至周日 9:00 - 21:00 (GMT+8)
+                </div>
+            </div>
+
+            <!-- Right Column: Form -->
+            <div class="contact-card">
+                <form onsubmit="handleContactSubmit(event)">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display:block; font-size:12px; font-weight:700; color:#666; margin-bottom:8px;">您的称呼</label>
+                        <input type="text" class="input-standard" placeholder="如何称呼您?" required>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display:block; font-size:12px; font-weight:700; color:#666; margin-bottom:8px;">联系方式</label>
+                        <input type="text" class="input-standard" placeholder="电话或电子邮箱" required>
+                    </div>
+                    <div style="margin-bottom: 30px;">
+                        <label style="display:block; font-size:12px; font-weight:700; color:#666; margin-bottom:8px;">咨询内容</label>
+                        <textarea class="input-standard" style="height: 140px; resize: none;" placeholder="请描述您的需求..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-black" style="width: 100%;">提交预约申请</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Success Modal -->
+    <div id="contact-success-modal" class="modal">
+        <div class="success-modal-content">
+            <span class="success-icon">✓</span>
+            <h2 style="margin-bottom:10px;">申请提交成功</h2>
+            <p style="color:#666;">我们的专属顾问将尽快与您联系。<br>请留意您的电话或邮箱。</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; display:block; color:#000;">084 MALL</a>
+                    <p style="max-width: 300px; line-height: 1.8;">Defining the future of commerce through minimalist design and curated luxury.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>探索</h4>
+                    <a href="list.html?cat=elec">智能数码</a>
+                    <a href="list.html?cat=fashion">高级时装</a>
+                </div>
+                <div class="footer-col">
+                    <h4>服务</h4>
+                    <a href="help.html">帮助中心</a>
+                    <a href="contact.html">私人礼宾</a>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:60px; color:#ccc; font-size:10px; letter-spacing:2px;">
+                &copy; 2024 084 MALL. ALL RIGHTS RESERVED. <a href="admin.html" target="_blank" style="color:inherit; opacity:0.1; margin-left:10px; text-decoration:none;">Manage</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

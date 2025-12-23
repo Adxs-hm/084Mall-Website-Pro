@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>084 MALL | 系列作品</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="list">
+
+    <nav class="nav-platinum">
+        <div class="nav-content">
+            <a href="index.html" class="logo">084 MALL</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="list.html" class="active">系列作品 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="list.html?cat=elec">智能数码</a>
+                        <a href="list.html?cat=fashion">高级时装</a>
+                        <a href="list.html?cat=home">家居美学</a>
+                    </div>
+                </li>
+                <li><a href="about.html">品牌哲学</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="help.html">客户服务 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="help.html">帮助中心</a>
+                        <a href="contact.html">私人礼宾</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <a href="cart.html" class="cart-trigger">购物车 (<span class="cart-count">0</span>)</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="sidebar-layout">
+            <aside>
+                <div style="font-size:11px; font-weight:800; color:#aaa; letter-spacing:2px; margin-bottom:25px; padding-left:20px; text-transform:uppercase;">分类筛选</div>
+                <ul class="sidebar-nav">
+                    <li><a href="list.html">全部系列</a></li>
+                    <li><a href="list.html?cat=elec">智能数码</a></li>
+                    <li><a href="list.html?cat=fashion">高级时装</a></li>
+                    <li><a href="list.html?cat=home">家居美学</a></li>
+                </ul>
+            </aside>
+
+            <section style="flex: 1;">
+                <div style="margin-bottom:35px; border-bottom:1px solid #f0f0f0; padding-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end;">
+                    <h1 style="font-size:28px; font-weight:700;">作品全集</h1>
+                    <span style="font-size:13px; color:#999;">CURATED <span id="item-count" style="color:#000; font-weight:800;">0</span> PIECES</span>
+                </div>
+                <div class="grid-platinum" id="product-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; display:block; color:#000;">084 MALL</a>
+                    <p style="max-width: 300px; line-height: 1.8;">Defining the future of commerce through minimalist design and curated luxury.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>探索</h4>
+                    <a href="list.html?cat=elec">智能数码</a>
+                    <a href="list.html?cat=fashion">高级时装</a>
+                </div>
+                <div class="footer-col">
+                    <h4>服务</h4>
+                    <a href="help.html">帮助中心</a>
+                    <a href="contact.html">私人礼宾</a>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:60px; color:#ccc; font-size:10px; letter-spacing:2px;">
+                &copy; 2024 084 MALL. ALL RIGHTS RESERVED. <a href="admin.html" target="_blank" style="color:inherit; opacity:0.1; margin-left:10px; text-decoration:none;">Manage</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

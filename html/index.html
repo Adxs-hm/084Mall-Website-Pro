@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>084 MALL | LUXURY SELECTION</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="home">
+
+    <nav class="nav-platinum">
+        <div class="nav-content">
+            <a href="index.html" class="logo">084 MALL</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="list.html">系列作品 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="list.html?cat=elec">智能数码</a>
+                        <a href="list.html?cat=fashion">高级时装</a>
+                        <a href="list.html?cat=home">家居美学</a>
+                    </div>
+                </li>
+                <li><a href="about.html">品牌哲学</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="help.html">客户服务 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="help.html">帮助中心</a>
+                        <a href="contact.html">私人礼宾</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <a href="cart.html">购物车 (<span class="cart-count">0</span>)</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <!-- Carousel Slider with Controls -->
+            <div id="home-carousel" class="carousel-container">
+                <button class="carousel-arrow prev" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="carousel-arrow next" onclick="moveCarousel(1)">&#10095;</button>
+                <div id="carousel-track" style="width:100%; height:100%; position:relative;">
+                    <!-- Slides injected by JS -->
+                </div>
+                <div id="carousel-dots" class="carousel-dots">
+                    <!-- Dots injected by JS -->
+                </div>
+            </div>
+
+            <!-- Service Feature Banner -->
+            <div class="service-banner">
+                <div class="service-item">
+                    <span class="service-icon">💎</span>
+                    <div class="service-text">
+                        <strong>官方正品保证</strong>
+                        <span>Global Authenticity</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-icon">🚀</span>
+                    <div class="service-text">
+                        <strong>卡戎极速快运</strong>
+                        <span>Charon Express</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-icon">🛡️</span>
+                    <div class="service-text">
+                        <strong>尊享售后无忧</strong>
+                        <span>Premium Care</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <span class="service-icon">✨</span>
+                    <div class="service-text">
+                        <strong>私人礼宾服务</strong>
+                        <span>Concierge Service</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Arrivals -->
+            <section style="margin-top: 60px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                    <h2 style="font-weight:700; font-size:24px;">限量新品 · DROPS</h2>
+                    <a href="list.html" style="color:#666; font-size:13px;">查看全部 &rarr;</a>
+                </div>
+                <div class="grid-platinum" id="seckill-items"></div>
+            </section>
+
+            <!-- Generative Art Banner (Canvas) -->
+            <div class="gif-banner">
+                <canvas id="generative-canvas"></canvas>
+                <div class="gif-banner-overlay">
+                    <p style="color:#fff; font-size:12px; font-weight:700; letter-spacing:2px; margin-bottom:10px; text-transform: uppercase;">Real-time Generation</p>
+                    <h3 style="font-size:36px; font-weight:300; letter-spacing:6px; margin:0;">AI SHOPPING ASSISTANT</h3>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <section style="margin-bottom: 80px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                    <h2 style="font-weight:700; font-size:24px;">智能数码系列</h2>
+                    <a href="list.html?cat=elec" style="color:#666; font-size:13px;">浏览更多 &rarr;</a>
+                </div>
+                <div class="grid-platinum" id="grid-elec"></div>
+            </section>
+
+             <section style="margin-bottom: 80px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                    <h2 style="font-weight:700; font-size:24px;">高级时装系列</h2>
+                    <a href="list.html?cat=fashion" style="color:#666; font-size:13px;">浏览更多 &rarr;</a>
+                </div>
+                <div class="grid-platinum" id="grid-fashion"></div>
+            </section>
+
+             <section style="margin-bottom: 80px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                    <h2 style="font-weight:700; font-size:24px;">家居美学系列</h2>
+                    <a href="list.html?cat=home" style="color:#666; font-size:13px;">浏览更多 &rarr;</a>
+                </div>
+                <div class="grid-platinum" id="grid-home"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; display:block; color:#000;">084 MALL</a>
+                    <p style="max-width: 300px; line-height: 1.8;">Defining the future of commerce through minimalist design and curated luxury.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>探索</h4>
+                    <a href="list.html?cat=elec">智能数码</a>
+                    <a href="list.html?cat=fashion">高级时装</a>
+                </div>
+                <div class="footer-col">
+                    <h4>服务</h4>
+                    <a href="help.html">帮助中心</a>
+                    <a href="contact.html">私人礼宾</a>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:60px; color:#ccc; font-size:10px; letter-spacing:2px;">
+                &copy; 2024 084 MALL. ALL RIGHTS RESERVED. <a href="admin.html" target="_blank" style="color:inherit; opacity:0.1; margin-left:10px; text-decoration:none;">Manage</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
